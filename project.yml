@@ -1,0 +1,285 @@
+name: LifeSum
+
+############
+# configs
+############
+
+configs:
+  Production: release
+  Development: debug
+
+############
+# options
+############
+
+options:
+  bundleIdPrefix: com.lagrave
+  createIntermediateGroups: true
+  defaultConfig: Development
+  usesTabs: false
+  indentWidth: 4
+  tabWidth: 4
+  preGenCommand: "sh scripts/pre_xcodegen.sh"
+  developmentLanguage: en
+  generateEmptyDirectories: true
+
+############
+# targets
+############
+
+targets:
+  App:
+    templates:
+      - Application
+    dependencies:
+      - target: Localization
+      - target: Assets
+      - target: Services
+      - target: Core
+      - target: AppLogger
+      - target: UI
+      - target: Dependencies
+    postCompileScripts:
+      - path: scripts/swiftlint_check.sh
+
+
+# Level 0
+
+  # Core
+  Core:
+    templates:
+      - Framework
+    templateAttributes:
+      frameworkLevel: Level 0
+  # Localization
+  Localization:
+    templates:
+      - Framework
+    templateAttributes:
+      frameworkLevel: Level 0
+  # Assets
+  Assets:
+    templates:
+      - Framework
+    templateAttributes:
+      frameworkLevel: Level 0
+  # Entities
+  Entities:
+    templates:
+      - Framework
+    templateAttributes:
+      frameworkLevel: Level 0
+  # Core Tests
+  CoreTests:
+    templates:
+      - TestBundle
+    templateAttributes:
+      frameworkLevel: Level 0
+      testsTarget: Core
+    dependencies:
+      - target: Core
+  # AppLogger
+  AppLogger:
+    templates:
+      - Framework
+    templateAttributes:
+      frameworkLevel: Level 0
+    dependencies:
+      - package: SwiftyBeaver
+
+# Level 1
+
+  # API
+  API:
+    templates:
+      - Framework
+    templateAttributes:
+      frameworkLevel: Level 1
+    dependencies:
+      - target: Entities
+      - target: AppLogger
+
+  # Mocks
+  Mocks:
+    templates:
+      - Framework
+    templateAttributes:
+      frameworkLevel: Level 1
+    dependencies:
+      - target: Core
+      - target: Entities
+      - target: AppLogger
+
+# Level 2
+
+  # UI
+  UI:
+    templates:
+      - Framework
+    templateAttributes:
+      frameworkLevel: Level 2
+    dependencies:
+      - target: Assets
+      - target: Core
+      - target: Entities
+      - target: Localization
+      - target: AppLogger
+  # UI Tests
+  UITests:
+    templates:
+      - TestBundle
+    templateAttributes:
+      frameworkLevel: Level 2
+      testsTarget: UI
+    dependencies:
+      - target: UI
+    settings:
+      base:
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/App.app/App"
+
+  # Services
+  Services:
+    templates:
+      - Framework
+    templateAttributes:
+      frameworkLevel: Level 2
+    dependencies:
+      - target: API
+  # Services Tests
+  ServicesTests:
+    templates:
+      - TestBundle
+    templateAttributes:
+      frameworkLevel: Level 2
+      testsTarget: Services
+    dependencies:
+      - target: Mocks
+      - target: Services
+      - target: AppLogger
+
+# Level 3
+
+  # Dependencies
+  Dependencies:
+    templates:
+      - Framework
+    templateAttributes:
+      frameworkLevel: Level 3
+    dependencies:
+      - target: Services
+
+############
+# settings
+############
+
+settings:
+  base:
+    TARGETED_DEVICE_FAMILY: 1
+  Production:
+    ENABLE_TESTABILITY: NO
+    SWIFT_COMPILATION_MODE: wholemodule
+    SWIFT_OPTIMIZATION_LEVEL: -O
+    VALIDATE_PRODUCT: YES
+    ENABLE_BITCODE: NO
+
+############
+# target templates
+############
+
+targetTemplates:
+  Application:
+    templates:
+      - BaseTemplate
+    type: application
+    sources:
+      - path: "Targets/${target_name}"
+    settings:
+      base:
+        CODE_SIGN_STYLE: Automatic
+        DEFINES_MODULE: YES
+        INFOPLIST_FILE: "Targets/${target_name}/Supports/Info.plist"
+        CODE_SIGN_ENTITLEMENTS: "Targets/${target_name}/Supports/${target_name}.entitlements"
+        ASSETCATALOG_COMPILER_APPICON_NAME: "$(APPLICATION_ASSETCATALOG_COMPILER_APPICON_NAME)"
+    configFiles:
+      Production: "Targets/${target_name}/Configs/Production.xcconfig"
+      Development: "Targets/${target_name}/Configs/Development.xcconfig"
+    configs:
+      Prodution:
+        CODE_SIGN_IDENTITY: iPhone AppStore
+      Development:
+        CODE_SIGN_IDENTITY: iPhone Developer
+    environmentVariables:
+      DYLD_PRINT_STATISTICS: 1
+
+  Framework:
+    templates:
+      - BaseTemplate
+    type: framework
+    sources:
+      - path: "Frameworks/${frameworkLevel}/${target_name}/Main"
+        excludes:
+          - "Generated/ReadMe.md"
+
+  TestBundle:
+    templates:
+      - BaseTemplate
+    type: bundle.unit-test
+    sources:
+      - path: "Frameworks/${frameworkLevel}/${testsTarget}/Tests"
+
+  BaseTemplate:
+    platform: iOS
+    deploymentTarget: "14.0"
+    settings:
+      base:
+        TARGETED_DEVICE_FAMILY: 1
+
+
+############
+# schemes
+############
+
+schemes:
+  Development:
+    build:
+      targets:
+        App: all
+    run:
+      config: Development
+    archive:
+      config: Development
+    analyze:
+      config: Development
+    test:
+      targets:
+        - ServicesTests
+        - CoreTests
+        - UITests
+      gatherCoverageData: true
+      coverageTargets:
+        - App
+        - Services
+        - Core
+        - UI
+  Production:
+    build:
+      targets:
+        App: all
+    run:
+      config: Production
+    archive:
+      config: Production
+    analyze:
+      config: Production
+    profile:
+    test:
+      config: Production
+
+############
+# packages
+############
+
+packages:
+  SwiftyBeaver:
+    url: https://github.com/SwiftyBeaver/SwiftyBeaver
+    majorVersion: 1.9.6

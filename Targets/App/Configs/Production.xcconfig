@@ -1,0 +1,6 @@
+#include "Base.xcconfig"
+APP_NAME = LifeSum Challenge
+SERVER_TYPE = PRODUCTION
+APP_TYPE = lifesum-challenge
+PRODUCT_BUNDLE_IDENTIFIER = com.lagrave.lifesum-challenge
+APPLICATION_ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon

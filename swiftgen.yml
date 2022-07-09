@@ -1,0 +1,30 @@
+strings:
+  #localization
+  inputs:
+    - Frameworks/Level 0/Localization/Main/Sources
+  outputs:
+      templateName: structured-swift5
+      output: Frameworks/Level 0/Localization/Main/Generated/Strings.swift
+      params:
+        publicAccess: true
+xcassets:
+  #icons
+  - inputs: 
+      - Frameworks/Level 0/Assets/Main/Sources/Icons
+    outputs:
+      templateName: swift5
+      output: Frameworks/Level 0/Assets/Main/Generated/Icons.swift
+      params:
+        publicAccess: true
+        forceProvidesNamespaces: true
+        forceFileNameEnum: true
+        enumName: Icons
+  #colors
+  - inputs: 
+      - Frameworks/Level 0/Assets/Main/Sources/Colors
+    outputs:
+      templateName: swift5
+      output: Frameworks/Level 0/Assets/Main/Generated/Colors.swift
+      params:
+        publicAccess: true
+        enumName: Colors
