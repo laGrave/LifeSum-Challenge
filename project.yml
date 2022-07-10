@@ -229,7 +229,7 @@ targetTemplates:
 
   BaseTemplate:
     platform: iOS
-    deploymentTarget: "14.0"
+    deploymentTarget: "15.0"
     settings:
       base:
         TARGETED_DEVICE_FAMILY: 1
