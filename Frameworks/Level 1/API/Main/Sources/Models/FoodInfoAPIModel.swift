@@ -1,4 +1,4 @@
-public struct FoodInfoAPIModel {
+public struct FoodInfoAPIModel: Decodable {
 
     public let id: Int
     public let title: String

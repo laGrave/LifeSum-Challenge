@@ -1,1 +1,1 @@
-public protocol APIInterface { }
+public protocol APIInterface {}
