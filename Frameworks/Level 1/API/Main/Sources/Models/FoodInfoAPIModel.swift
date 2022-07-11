@@ -1,6 +1,5 @@
 public struct FoodInfoAPIModel: Decodable {
 
-    public let id: Int
     public let title: String
     public let calories: Int
     public let carbs: Float

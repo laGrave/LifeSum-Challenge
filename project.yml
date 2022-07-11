@@ -99,25 +99,39 @@ targets:
       - target: Entities
       - target: AppLogger
 
-  # Mocks
+# Level 2
+
+# Mocks
   Mocks:
     templates:
       - Framework
     templateAttributes:
-      frameworkLevel: Level 1
+      frameworkLevel: Level 2
     dependencies:
       - target: Core
       - target: Entities
+      - target: API
       - target: AppLogger
 
-# Level 2
+# Mocks Tests
+  MocksTests:
+    templates:
+      - TestBundle
+    templateAttributes:
+      frameworkLevel: Level 2
+      testsTarget: Mocks
+    dependencies:
+      - target: Mocks
+      - target: API
+
+# Level 3
 
   # UI
   UI:
     templates:
       - Framework
     templateAttributes:
-      frameworkLevel: Level 2
+      frameworkLevel: Level 3
     dependencies:
       - target: Assets
       - target: Core
@@ -129,7 +143,7 @@ targets:
     templates:
       - TestBundle
     templateAttributes:
-      frameworkLevel: Level 2
+      frameworkLevel: Level 3
       testsTarget: UI
     dependencies:
       - target: UI
@@ -142,7 +156,7 @@ targets:
     templates:
       - Framework
     templateAttributes:
-      frameworkLevel: Level 2
+      frameworkLevel: Level 3
     dependencies:
       - target: API
   # Services Tests
@@ -150,21 +164,21 @@ targets:
     templates:
       - TestBundle
     templateAttributes:
-      frameworkLevel: Level 2
+      frameworkLevel: Level 3
       testsTarget: Services
     dependencies:
       - target: Mocks
       - target: Services
       - target: AppLogger
 
-# Level 3
+# Level 4
 
   # Dependencies
   Dependencies:
     templates:
       - Framework
     templateAttributes:
-      frameworkLevel: Level 3
+      frameworkLevel: Level 4
     dependencies:
       - target: Services
 
