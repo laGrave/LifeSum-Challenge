@@ -159,6 +159,8 @@ targets:
       frameworkLevel: Level 3
     dependencies:
       - target: API
+      - target: Core
+      - target: AppLogger
   # Services Tests
   ServicesTests:
     templates:
