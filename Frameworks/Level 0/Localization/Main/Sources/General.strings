@@ -1,1 +1,14 @@
-"buttons.pill.title" = "MORE INFO";
+"fetchInfo.buttons.random.title" = "Fetch Food Info";
+"info.carbs" = "carbs";
+"info.protein" = "protein";
+"info.fat.common" = "fat";
+"info.fat.saturated" = "saturated fat";
+"info.fat.unsaturated" = "unsaturated fat";
+"info.fiber" = "fiber";
+"info.cholesterol" = "cholesterol";
+"info.sugar" = "sugar";
+"info.sodium" = "sodium";
+"info.potassium" = "potassium";
+"info.gramsperserving" = "grams per serving";
+"info.header.calories.description" = "Calories per serving";
+"info.buttons.more.title" = "more info";

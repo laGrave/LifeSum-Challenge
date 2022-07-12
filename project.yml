@@ -161,6 +161,7 @@ targets:
       - target: API
       - target: Core
       - target: AppLogger
+      - target: Mocks
   # Services Tests
   ServicesTests:
     templates:

@@ -39,6 +39,9 @@ public struct PillButton: View {
                 x: 0,
                 y: 16
             )
+            .onTapGesture {
+                action()
+            }
     }
 
 }
@@ -46,6 +49,6 @@ public struct PillButton: View {
 struct PillButton_Previews: PreviewProvider {
 
     static var previews: some View {
-        PillButton(title: L10n.Buttons.Pill.title) {  }
+        PillButton(title: L10n.Info.Buttons.More.title) {  }
     }
 }

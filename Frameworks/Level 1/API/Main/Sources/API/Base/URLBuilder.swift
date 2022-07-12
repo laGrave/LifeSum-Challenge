@@ -4,8 +4,8 @@ import Foundation
 
 public enum NetworkServerType: String {
 
-    case dev
-    case prod
+    case dev = "DEVELOPMENT"
+    case prod = "PRODUCTION"
 
     public var baseURL: URL {
         guard let url = URL(string: path) else {
@@ -17,7 +17,7 @@ public enum NetworkServerType: String {
     }
 
     public static func extractTypeFromConfig() -> Self {
-        let configKey = "SERVER_TYPE"
+        let configKey = "Server type"
         do {
             let rawType: String = try Configuration.value(for: configKey)
             return .init(rawValue: rawType) ?? .prod

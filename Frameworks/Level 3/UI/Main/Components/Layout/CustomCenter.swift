@@ -3,8 +3,8 @@ import SwiftUI
 extension HorizontalAlignment {
 
     enum Custom: AlignmentID {
-        static func defaultValue(in d: ViewDimensions) -> CGFloat {
-            d[HorizontalAlignment.center]
+        static func defaultValue(in dimension: ViewDimensions) -> CGFloat {
+            dimension[HorizontalAlignment.center]
         }
     }
 
@@ -15,8 +15,8 @@ extension HorizontalAlignment {
 extension VerticalAlignment {
 
     enum Custom: AlignmentID {
-        static func defaultValue(in d: ViewDimensions) -> CGFloat {
-            d[VerticalAlignment.center]
+        static func defaultValue(in dimension: ViewDimensions) -> CGFloat {
+            dimension[VerticalAlignment.center]
         }
     }
 

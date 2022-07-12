@@ -26,7 +26,11 @@ public struct StackedText: View {
             Text(text2)
                 .asStacked()
         }
-            .frame(width: 100)
+            .frame(height: 100)
+            .fixedSize(
+                horizontal: true,
+                vertical: true
+            )
     }
 
 }
@@ -37,7 +41,7 @@ fileprivate extension Text {
 
         func body(content: Content) -> some View {
             content
-                .font(.avenir(size: 20, style: .light))
+                .font(.avenir(size: 14, style: .light))
                 .foregroundColor(
                     Colors.stacked.color.toSwiftUI()
                 )

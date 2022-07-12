@@ -31,8 +31,9 @@ public struct HeaderInfo: View {
                         endPoint: .bottomTrailing
                     )
                 )
-                .alignmentGuide(VerticalAlignment.custom)
-            { d in d[VerticalAlignment.center] }
+                .alignmentGuide(VerticalAlignment.custom) { dimension in
+                    dimension[VerticalAlignment.center]
+                }
                 .frame(width: 272, height: 272)
                 .shadow(
                     color: Colors.HeaderInfo.shadow.color.toSwiftUI(),
@@ -59,8 +60,9 @@ public struct HeaderInfo: View {
                 Text(value)
                     .font(.avenir(size: 50, style: .roman))
                     .foregroundColor(.white)
-                    .alignmentGuide(VerticalAlignment.custom)
-                { d in d[VerticalAlignment.center] }
+                    .alignmentGuide(VerticalAlignment.custom) { dimension in
+                        dimension[VerticalAlignment.center]
+                    }
 
                 Text(description)
                     .font(.avenir(size: 14, style: .oblique))
