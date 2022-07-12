@@ -49,9 +49,4 @@ struct FoodInfoView<ViewModel>: View where ViewModel: FoodInfoViewModelInterface
         }
     }
 
-    @ViewBuilder
-    private func content() -> some View {
-
-    }
-
 }
