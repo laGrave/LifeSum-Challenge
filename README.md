@@ -10,6 +10,9 @@ As a result app based on SwiftUI framework with iOS 15 capability.
 
 Project and code generation is done using [XcodeGen](https://github.com/yonaskolb/XcodeGen) and [SwifGen](https://github.com/SwiftGen/SwiftGen) tools. So they must be installed on the local mac
 
+![Simulator Screen Shot - iPhone 13 mini - 2022-07-13 at 23 32 46](https://user-images.githubusercontent.com/1143497/178829301-8592eb4b-cf54-45be-9afa-b53b6eadcdb5.png)
+
+
 ## Installing
 
 Just run 'xcodegen' terminal command from project directory and you're done.
