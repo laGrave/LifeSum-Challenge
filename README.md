@@ -8,9 +8,13 @@ App downloads food item info using special link and display it to user. Successf
 The challenge condition said that any tools could be used, so I decided to use the most recent technologies with one limitation: as low as possible third party libs should be used.
 As a result app based on SwiftUI framework with iOS 15 capability. 
 
-App based on MVVM+C architecture. 
+Project and code generation is done using [XcodeGen](https://github.com/yonaskolb/XcodeGen) and [SwifGen](https://github.com/SwiftGen/SwiftGen) tools. So they must be installed on the local mac
 
-**App Structure**
+## Installing
+
+Just run 'xcodegen' terminal command from project directory and you're done.
+
+## App Structure
  1. App layer 
  2. Frameworks layer
 
