@@ -68,5 +68,5 @@ DI tool. Contains public services interfaces.
 
 ## Potential improvements:
 - Much more unit tests. Don’t have enough time to write them
-- May downgrade system requirements if replace URLSession with some third-party framework that which supports async\await methods. Or if wraps old-style closure based API to support async\await on iOS 13+. But first version of SwiftUI is quite unstable so iOS 14 is a minimum.
+- May downgrade system requirements if replace URLSession with some third-party framework that supports async\await methods. Or if wraps old-style closure based API to support async\await on iOS 13+. But first version of SwiftUI is quite unstable so iOS 14 is a minimum.
 - Replace UserDefaults in Storage framework to something more advanced such as CoreData, Realm, GRDB etc.
