@@ -36,7 +36,7 @@ struct FoodInfoView<ViewModel>: View where ViewModel: FoodInfoViewModelInterface
 
                         if !viewModel.expanded {
                             Spacer()
-                            PillButton(title: L10n.Info.Buttons.More.title) {
+                            PillButton(title: L10n.Info.Buttons.More.title.uppercased()) {
                                 withAnimation {
                                     viewModel.expanded.toggle()
                                 }
