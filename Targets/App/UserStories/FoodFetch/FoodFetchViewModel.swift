@@ -35,7 +35,8 @@ private extension FoodFetchViewModel {
 
     func foodInfoWithRandomId() -> AnyPublisher<FoodInfo, Never> {
         func getByRandom() -> AnyPublisher<FoodInfo, ServiceError> {
-            let random = Int.random(in: 0...250)
+//            let random = Int.random(in: 0...250)
+            let random = 10
             return foodInfoService.loadFoodInfo(id: random)
         }
 

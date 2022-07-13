@@ -99,6 +99,15 @@ targets:
       - target: Entities
       - target: AppLogger
 
+  Storage:
+    templates:
+        - Framework
+    templateAttributes:
+        frameworkLevel: Level 1
+    dependencies:
+        - target: Entities
+        - target: AppLogger
+
 # Level 2
 
 # Mocks
@@ -162,6 +171,7 @@ targets:
       - target: Core
       - target: AppLogger
       - target: Mocks
+      - target: Storage
   # Services Tests
   ServicesTests:
     templates:

@@ -1,4 +1,4 @@
-public struct Fat: Hashable {
+public struct Fat: Codable, Hashable {
 
     public let common: Float
     public let saturated: Float

@@ -2,13 +2,20 @@ import Combine
 import Foundation
 import API
 import Entities
+import Storage
 
 public final class FoodInfoService {
 
     private let asyncService: FoodInfoAsyncService
 
-    public init(api: FoodInfoAPIInterface) {
-        asyncService = .init(api: api)
+    public init(
+        api: FoodInfoAPIInterface,
+        storage: FoodInfoStorageInterface
+    ) {
+        asyncService = .init(
+            api: api,
+            storage: storage
+        )
     }
 
     private func publisher<Output>(
@@ -24,7 +31,7 @@ public final class FoodInfoService {
 
 extension FoodInfoService: FoodInfoServiceInterface {
 
-    public func loadFoodInfo(id: Int) -> Combine.AnyPublisher<FoodInfo, ServiceError> {
+    public func loadFoodInfo(id: Int) -> AnyPublisher<FoodInfo, ServiceError> {
         publisher { await $0.loadFoodInfo(id: id) }
     }
 

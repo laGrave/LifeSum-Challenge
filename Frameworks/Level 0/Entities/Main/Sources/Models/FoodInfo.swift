@@ -1,4 +1,4 @@
-public struct FoodInfo: Hashable {
+public struct FoodInfo: Codable, Hashable {
 
     public let id: Int
     public let title: String
