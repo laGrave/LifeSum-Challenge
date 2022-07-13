@@ -26,6 +26,7 @@ final class FoodFetchCoordinator: ObservableObject {
     func setupNavigation(services: ServicesDependency) {
         viewModel.output
             .foodInfoLoaded
+            .receive(on: DispatchQueue.main)
             .map { info in
                 FoodInfoCoordinator(info: info)
             }

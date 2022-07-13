@@ -12,8 +12,40 @@ struct FoodFetchView<ViewModel>: View where ViewModel: FoodFetchViewModelInterfa
     }
 
     var body: some View {
-        PillButton(title: L10n.FetchInfo.Buttons.Random.title) {
-            viewModel.input.randomId.send()
+        VStack {
+            ZStack {
+                EmptyView()
+
+                if viewModel.isDownloadActive {
+                    ProgressView()
+                        .progressViewStyle(
+                            CircularProgressViewStyle(
+                                tint: Color.red
+                            )
+                        )
+                }
+            }
+                .frame(height: 50)
+            PillButton(title: L10n.FetchInfo.Buttons.Random.title) {
+                if !viewModel.isDownloadActive {
+                    viewModel.input.randomId.send()
+                }
+
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func optionalActivity() -> some View {
+        if viewModel.isDownloadActive {
+            ProgressView()
+                .progressViewStyle(
+                    CircularProgressViewStyle(
+                        tint: Color.red
+                    )
+                )
+        } else {
+            EmptyView()
         }
     }
 
