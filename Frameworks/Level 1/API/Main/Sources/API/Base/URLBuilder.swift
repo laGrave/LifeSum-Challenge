@@ -7,13 +7,13 @@ public enum NetworkServerType: String {
     case dev = "DEVELOPMENT"
     case prod = "PRODUCTION"
 
-    public var baseURL: URL {
-        guard let url = URL(string: path) else {
-            let error = "base URL is nil"
-            logger.error(error)
-            fatalError(error)
+    public var host: String {
+        switch self {
+        case .dev,
+             .prod:
+            // currently we have only one type of URL
+            return "api.lifesum.com"
         }
-        return url
     }
 
     public static func extractTypeFromConfig() -> Self {
@@ -24,19 +24,6 @@ public enum NetworkServerType: String {
         } catch {
             logger.error("cannot fetch server type from configuration file: \(error)")
             return .prod
-        }
-    }
-
-}
-
-private extension NetworkServerType {
-
-    private var path: String {
-        switch self {
-        case .dev,
-            .prod:
-            // currently we have only one type of URL
-            return "https://api.lifesum.com"
         }
     }
 

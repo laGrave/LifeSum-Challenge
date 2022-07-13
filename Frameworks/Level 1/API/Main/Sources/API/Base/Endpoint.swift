@@ -1,3 +1,5 @@
+import Foundation
+
 enum Endpoint {
 
     case foodInfo(Int)
@@ -6,13 +8,17 @@ enum Endpoint {
 
 extension Endpoint {
 
-    var path: String {
-        endpointBasePath + {
+    var urlComponents: URLComponents {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.path = endpointBasePath
+        components.queryItems = {
             switch self {
             case let .foodInfo(id):
-                return "codetest?foodid=\(id)"
+                return [.init(name: "foodid", value: String(id))]
             }
         }()
+        return components
     }
 
 }
@@ -20,7 +26,7 @@ extension Endpoint {
 private extension Endpoint {
 
     var endpointBasePath: String {
-        "v2/foodipedia/"
+        "/v2/foodipedia/codetest"
     }
 
 }
