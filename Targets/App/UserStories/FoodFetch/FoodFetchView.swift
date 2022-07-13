@@ -35,18 +35,4 @@ struct FoodFetchView<ViewModel>: View where ViewModel: FoodFetchViewModelInterfa
         }
     }
 
-    @ViewBuilder
-    private func optionalActivity() -> some View {
-        if viewModel.isDownloadActive {
-            ProgressView()
-                .progressViewStyle(
-                    CircularProgressViewStyle(
-                        tint: Color.red
-                    )
-                )
-        } else {
-            EmptyView()
-        }
-    }
-
 }
