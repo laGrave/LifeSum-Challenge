@@ -1,6 +1,7 @@
 import SwiftUI
 import Core
 import Localization
+import Assets
 
 public struct PillButton: View {
 
@@ -24,8 +25,8 @@ public struct PillButton: View {
                 LinearGradient(
                     gradient: Gradient(
                         colors: [
-                            UIColor(red: 1, green: 5, blue: 33).toSwiftUI(),
-                            UIColor(red: 2, green: 6, blue: 39).toSwiftUI()
+                            Colors.Buttons.Pill.Gradient.top.color.toSwiftUI(),
+                            Colors.Buttons.Pill.Gradient.bottom.color.toSwiftUI()
                         ]
                     ),
                     startPoint: .top,
